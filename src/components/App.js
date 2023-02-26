@@ -7,11 +7,11 @@ const App = () => {
   const [laps, setLaps] = useState([]);
 
   const handleStart = () => {
-    setCurrentTime(true);
+    // setCurrentTime(true);
     startTimeRef.current = Date.now() - currentTime;
     intervalRef.current = setInterval(() => {
       setCurrentTime(Date.now() - startTimeRef.current);
-    }, 1000);
+    }, 10);
   };
   const handleStop = () => {
     clearInterval(intervalRef.current);
@@ -32,7 +32,7 @@ const App = () => {
     <div id="main">
       <section>
         <h1 className="seconds-elapsed">Stopwatch Time</h1>
-        <p>{(currentTime / 1000).toFixed(3)}s</p>
+        <p>{(currentTime / 1000).toFixed(3)}</p>
         <section className="buttons">
           <button className="start-btn" onClick={handleStart}>
             START
@@ -53,9 +53,7 @@ const App = () => {
         <section className="laps">
           <ul>
             {laps.map((lap, index) => (
-              <li key={index}>
-                Lap {index + 1}:{lap.toFixed(3)}s
-              </li>
+              <li key={index}>{lap.toFixed(3)}</li>
             ))}
           </ul>
         </section>
